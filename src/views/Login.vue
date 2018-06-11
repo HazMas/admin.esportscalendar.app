@@ -13,10 +13,18 @@
 <script>
 import { mapActions } from 'vuex'
 
+import FetchMixin from '@/mixin/FetchMixin'
+
 import { AUTH } from '@/store/types/actions'
 
 export default {
   name: 'login',
+  mixins: [
+    FetchMixin
+  ],
+  created () {
+    this.fetch_ready()
+  },
   data () {
     return {
       email: '',
@@ -26,8 +34,10 @@ export default {
   methods: {
     ...mapActions('user', [AUTH]),
     login () {
+      this.fetch_startLoading()
       this[AUTH]({email: this.email, password: this.password})
         .then(() => {
+          this.fetch_ready()
           this.$router.push({name: 'home'})
         })
     }

@@ -8,10 +8,18 @@
 <script>
 import { mapActions } from 'vuex'
 
+import FetchMixin from '@/mixin/FetchMixin'
+
 import { LOGOUT } from '@/store/types/actions'
 
 export default {
   name: 'home',
+  mixins: [
+    FetchMixin
+  ],
+  created () {
+    this.fetch_ready()
+  },
   methods: {
     ...mapActions('user', [LOGOUT]),
     logout () {

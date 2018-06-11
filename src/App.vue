@@ -4,9 +4,34 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <router-view @ready="pageReady"/>
   </div>
 </template>
+
+<script>
+import '../node_modules/nprogress/nprogress.css'
+import NProgress from 'nprogress'
+
+export default {
+  name: 'app',
+  created () {
+    NProgress.configure({
+      speed: 200,
+      showSpinner: false
+    })
+    NProgress.start()
+    this.$router.beforeEach((to, from, next) => {
+      NProgress.start()
+      next()
+    })
+  },
+  methods: {
+    pageReady () {
+      NProgress.done()
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
