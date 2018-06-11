@@ -1,7 +1,7 @@
 <template>
   <div>
     😁
-    <button @click="logout">Logout</button>
+    <button @click="logout">{{$t('logout')}}</button>
   </div>
 </template>
 

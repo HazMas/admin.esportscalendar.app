@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>Login</h1>
+    <h1>
+      {{$t('login')}}
+    </h1>
     <img width="200px" src="@/assets/img/logo.png">
     <form @submit.prevent="login">
-      <input v-model="email" type="email" placeholder="Email">
-      <input v-model="password" type="password" placeholder="password" @keyup.enter="login">
-      <input type="submit">
+      <input v-model="email" :placeholder="$t('email')" type="email">
+      <input v-model="password" :placeholder="$t('password')" type="password" @keyup.enter="login">
+      <input :value="$t('login')" type="submit">
     </form>
   </div>
 </template>

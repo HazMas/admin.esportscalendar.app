@@ -1,9 +1,13 @@
 <template>
   <div id="nav">
     <img width="15px" src="@/assets/img/logo.png">
-    <router-link :to="{name: 'home'}">Home</router-link>
+    <router-link :to="{name: 'home'}">
+      {{$t('home')}}
+    </router-link>
     <template v-if="isUserLogged"> |
-      <a href="#" @click.prevent="logout">Logout</a>
+      <a href="#" @click.prevent="logout">
+        {{$t('logout')}}
+      </a>
     </template>
   </div>
 </template>

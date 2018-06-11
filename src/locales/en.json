@@ -1,3 +1,7 @@
 {
-  "message": "hello i18n!"
+  "home": "home",
+  "logout": "logout",
+  "login": "login",
+  "password": "password",
+  "email": "email"
 }
