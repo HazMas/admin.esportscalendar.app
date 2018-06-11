@@ -8,6 +8,7 @@ const loadView = (view) => {
 }
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/login',
