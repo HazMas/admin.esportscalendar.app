@@ -1,22 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
 
 Vue.use(Router)
+
+const loadView = (view) => {
+  return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+}
 
 export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home
+      path: '/login',
+      name: 'login',
+      component: loadView('Login')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: loadView('About')
+    },
+    {
+      path: '/',
+      redirect: { name: 'login' }
     }
   ]
 })
