@@ -1,10 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import store from '@/store/index'
+
 Vue.use(Router)
 
 const loadView = (view) => {
   return () => import(/* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+}
+
+const isLoggedIn = () => {
+  console.log(store.getters[`user/isUserLogged`])
+  return store.getters[`user/isUserLogged`]
 }
 
 export default new Router({
@@ -13,7 +20,14 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: loadView('Login')
+      component: loadView('Login'),
+      beforeEnter: (to, from, next) => {
+        if (isLoggedIn()) {
+          return next({name: 'home'})
+        }
+
+        return next()
+      }
     },
     {
       path: '/about',
@@ -21,8 +35,20 @@ export default new Router({
       component: loadView('About')
     },
     {
+      path: '/home',
+      name: 'home',
+      component: loadView('Home'),
+      beforeEnter: (to, from, next) => {
+        if (!isLoggedIn()) {
+          return next({name: 'login'})
+        }
+
+        return next()
+      }
+    },
+    {
       path: '/',
-      redirect: { name: 'login' }
+      redirect: { name: 'home' }
     }
   ]
 })

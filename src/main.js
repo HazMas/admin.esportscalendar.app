@@ -1,10 +1,10 @@
 import Vue from 'vue'
-import firebase from 'firebase'
+import * as firebase from 'firebase/app'
 
 import App from './App.vue'
 
 import router from './router'
-import store from './store'
+import store from './store/index'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
