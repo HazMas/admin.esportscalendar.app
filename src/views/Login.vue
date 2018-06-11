@@ -3,8 +3,8 @@
     <h1>Login</h1>
     <img width="200px" src="@/assets/img/logo.png">
     <form @submit.prevent="login">
-      <input type="email" v-model="email" placeholder="Email">
-      <input type="password" v-model="password" @keyup.enter="login" placeholder="password">
+      <input v-model="email" type="email" placeholder="Email">
+      <input v-model="password" type="password" placeholder="password" @keyup.enter="login">
       <input type="submit">
     </form>
   </div>
@@ -22,14 +22,14 @@ export default {
   mixins: [
     FetchMixin
   ],
-  created () {
-    this.fetch_ready()
-  },
   data () {
     return {
       email: '',
       password: ''
     }
+  },
+  created () {
+    this.fetch_ready()
   },
   methods: {
     ...mapActions('user', [AUTH]),

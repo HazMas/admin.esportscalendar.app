@@ -29,11 +29,6 @@ export default new Router({
       }
     },
     {
-      path: '/about',
-      name: 'about',
-      component: loadView('About')
-    },
-    {
       path: '/home',
       name: 'home',
       component: loadView('Home'),
