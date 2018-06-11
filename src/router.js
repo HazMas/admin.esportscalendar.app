@@ -10,7 +10,6 @@ const loadView = (view) => {
 }
 
 const isLoggedIn = () => {
-  console.log(store.getters[`user/isUserLogged`])
   return store.getters[`user/isUserLogged`]
 }
 
