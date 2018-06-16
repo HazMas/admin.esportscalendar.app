@@ -20,9 +20,11 @@ const config = {
 }
 firebase.initializeApp(config)
 
-new Vue({
-  router,
-  store,
-  i18n,
-  render: h => h(App)
-}).$mount('#app')
+firebase.auth().onAuthStateChanged((user) => {
+  new Vue({
+    router,
+    store,
+    i18n,
+    render: h => h(App)
+  }).$mount('#app')
+})

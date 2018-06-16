@@ -29,7 +29,6 @@ const actions = {
   [LOGOUT] ({commit}) {
     return firebase.auth().signOut().then(() => {
       commit(SET_USER, {user: null})
-
       return Promise.resolve({user: null})
     })
   }
@@ -42,9 +41,6 @@ const mutations = {
 }
 
 const getters = {
-  isUserLogged (state) {
-    return !!state.currentUser
-  }
 }
 
 export default {
